@@ -20,6 +20,7 @@ public class mainAccount {
         Scanner scan = new Scanner(System.in);
         System.out.print("Xin nhập ID: ");
             int id = scan.nextInt();
+        scan.nextLine();
         System.out.println("Xin nhập mật khẩu: ");
             String pc = scan.nextLine();
         if(SQL.checkID(id, pc)) setUserID(id);

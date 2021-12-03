@@ -156,17 +156,15 @@ public class SQL {
 
     public static boolean checkID(int id, String pc) throws SQLException {
         ResultSet rs = checkID2(id, pc);
-        if(rs == null) return false;
-        else {
+        //if(rs == null) return false;
             while (rs.next()) {
-                if(rs.getString(1) == pc) return true;
+                if(Objects.equals(rs.getString(8), pc)) return true;
             }
-        }
         return false;
     }
     public static ResultSet checkID2(int id, String pc) {
         ResultSet rs = null;
-        String sqlCommand = "select passCode from " + tableEmployee + " where eID = " + id;
+        String sqlCommand = "select * from " + tableEmployee + " where eID = " + id;
         Statement st;
         try {
             st = connection.createStatement();
@@ -180,15 +178,15 @@ public class SQL {
 
     public static void addBilldetails(food x, int bID) {
         ResultSet rs = null;
-        String sqlCommand = "INSERT INTO billdetails (fID, fPrice, fNote, bID) " +
-                "VALUES (?, ?, ?, ?)";
+        String sqlCommand = "INSERT INTO billdetails (fID, fPrice, bID) " +
+                "VALUES (?, ?, ?)";
         PreparedStatement pst = null;
         try {
             pst = connection.prepareStatement(sqlCommand);
             pst.setInt(1, x.fID);
             pst.setInt(2, x.fPrice);
-            pst.setString(3, "none");
-            pst.setInt(4, bID);
+            //pst.setString(3, "none");
+            pst.setInt(3, bID);
             if (pst.executeUpdate() > 0) {
                 System.out.println("update success :" + pst.executeUpdate());
             } else {
@@ -201,8 +199,8 @@ public class SQL {
 
     public static void addBill(bill nBi) {
         ResultSet rs = null;
-        String sqlCommand = "INSERT INTO bill (bID, totalMoney, discount, timeIn,  timePayment, eID) " +
-                "VALUES (?, ?, ?, ?, ?, ?)";
+        String sqlCommand = "INSERT INTO bill (bID, totalMoney, discount, timeIn, eID) " +
+                "VALUES (?, ?, ?, ?, ?)";
         PreparedStatement pst = null;
         try {
             pst = connection.prepareStatement(sqlCommand);
@@ -210,7 +208,6 @@ public class SQL {
             pst.setInt(2, nBi.totalMoney);
             pst.setInt(3, 0);
             pst.setTimestamp(4, java.sql.Timestamp.valueOf(nBi.timeIn));
-            pst.setTimestamp(5, java.sql.Timestamp.valueOf(nBi.paymentTime));
             pst.setInt(5, nBi.eID);
             if (pst.executeUpdate() > 0) {
                 System.out.println("update success :" + pst.executeUpdate());
@@ -224,9 +221,7 @@ public class SQL {
 
     public static void payBill(int bID, LocalDateTime payTime) {
         ResultSet rs = null;
-        String sqlCommand = "UPDATE " + tableBill +
-                "SET timePayment = '?' " +
-                "WHERE bID = ?";
+        String sqlCommand = "UPDATE " + tableBill + " SET timePayment = ?" + " WHERE bID = ? ";
         PreparedStatement pst = null;
         try {
             pst = connection.prepareStatement(sqlCommand);
@@ -275,6 +270,7 @@ public class SQL {
         SQL myconnect = new SQL();
         billManagement bl = new billManagement();
         bl.newBill();
+        myconnect.payBill(90, LocalDateTime.now());
         //myconnect.printAllEmployees(myconnect.allEmployees());
         //myconnect.addEmployee("Trần Thủy", "Nhân viên", 4635);
         //myconnect.printAllFoods(myconnect.allFoods());
