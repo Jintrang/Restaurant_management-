@@ -1,39 +1,39 @@
 public class food {
-    int fID;
-    String fName;
-    int fPrice;
+    int foodId;
+    String name;
+    int price;
 
-    public food(int fID, String fName, int fPrice) {
-        this.fID = fID;
-        this.fName = fName;
-        this.fPrice = fPrice;
+    public food(int foodId, String name, int price) {
+        this.foodId = foodId;
+        this.name = name;
+        this.price = price;
     }
 
-    public int getfID() {
-        return fID;
+    public int getFoodId() {
+        return foodId;
     }
 
-    public void setfID(int fID) {
-        this.fID = fID;
+    public void setFoodId(int foodId) {
+        this.foodId = foodId;
     }
 
-    public String getfName() {
-        return fName;
+    public String getName() {
+        return name;
     }
 
-    public void setfName(String fName) {
-        this.fName = fName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getfPrice() {
-        return fPrice;
+    public int getPrice() {
+        return price;
     }
 
-    public void setfPrice(int fPrice) {
-        this.fPrice = fPrice;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public String getInfor() {
-        return this.fID + " " + this.fName + "  vnd" + this.fPrice;
+        return this.foodId + " " + this.name + "  vnd" + this.price;
     }
 }

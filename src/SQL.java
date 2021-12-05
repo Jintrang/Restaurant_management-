@@ -1,9 +1,8 @@
+import javafx.util.converter.LocalDateStringConverter;
+
 import java.sql.*;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.*;
 import java.util.*;
-import java.util.Date;
 
 public class SQL {
     /**
@@ -26,10 +25,14 @@ public class SQL {
         mainAccount.logIn();
         getAllEmployees(allEmployees());
         getAllFoodsSQL(allFoods());
+        getAllTablesSQL(allTables());
+        getNewBillIdSQL();
+        getNewFoodIdSQL();
+        getNewTableIdSQL();
+        geNewEmployeeIdSQL();
         //getWords(getAllWord());
         //wordList();
     }
-
 
     public void connect() {
         try {
@@ -42,6 +45,68 @@ public class SQL {
         }
     }
 
+
+    public static void getNewBillIdSQL() {
+        ResultSet rs = null;
+        String sqlCommand = "SELECT * FROM " + tableBill + " ORDER BY bID DESC LIMIT 1";
+        Statement st;
+        try {
+            st = connection.createStatement();
+            rs = st.executeQuery(sqlCommand);
+            rs.next();
+            billManagement.newBillId = rs.getInt(1);
+        } catch (SQLException e) {
+            System.out.println("Select error");
+            e.printStackTrace();
+        }
+    }
+
+    public static void getNewFoodIdSQL() {
+        ResultSet rs = null;
+        String sqlCommand = "SELECT * FROM " + tableFood + " ORDER BY fID DESC LIMIT 1";
+        Statement st;
+        try {
+            st = connection.createStatement();
+            rs = st.executeQuery(sqlCommand);
+            rs.next();
+            foodManagement.newFoodId = rs.getInt(1);
+        } catch (SQLException e) {
+            System.out.println("Select error");
+            e.printStackTrace();
+        }
+    }
+
+    public static void getNewTableIdSQL() {
+        ResultSet rs = null;
+        String sqlCommand = "SELECT * FROM " + tableDtable + " ORDER BY tId DESC LIMIT 1";
+        Statement st;
+        try {
+            st = connection.createStatement();
+            rs = st.executeQuery(sqlCommand);
+            rs.next();
+            tableManagement.newTableId = rs.getInt(1);
+        } catch (SQLException e) {
+            System.out.println("Select error");
+            e.printStackTrace();
+        }
+    }
+
+    public static void geNewEmployeeIdSQL() {
+        ResultSet rs = null;
+        String sqlCommand = "SELECT * FROM " + tableEmployee + " ORDER BY eID DESC LIMIT 1";
+        Statement st;
+        try {
+            st = connection.createStatement();
+            rs = st.executeQuery(sqlCommand);
+            rs.next();
+            employeeManagement.newEmployeeId = rs.getInt(1);
+        } catch (SQLException e) {
+            System.out.println("Select error");
+            e.printStackTrace();
+        }
+    }
+
+    // thêm tất cả nhân viên vào danh sách
     public ResultSet allEmployees() {
         ResultSet rs = null;
         String sqlCommand = "select * from " + tableEmployee;
@@ -56,37 +121,35 @@ public class SQL {
         return rs;
     }
 
-    // thêm tất cả nhân viên vào danh sách
     public void getAllEmployees(ResultSet rs) throws SQLException {
         while (rs.next()) {
-            employeeManagement.addEmployee(new employee(rs.getInt(1)
+            employeeManagement.addEmployeeToList(new employee(rs.getInt(1)
                     , rs.getString(2)
                     , rs.getString(3)
                     , Instant.ofEpochMilli(rs.getDate(4).getTime()).atZone(ZoneId.systemDefault()).toLocalDate()
                     , rs.getString(5)
                     , rs.getString(6)
                     , Instant.ofEpochMilli(rs.getDate(7).getTime()).atZone(ZoneId.systemDefault()).toLocalDate()));
-            //String nv = rs.getInt(1) + " " + rs.getString(2) + " " + rs.getString(3) + " "
-                    //+ rs.getInt(4) + " " + rs.getDate(5);
-            //System.out.println(nv);
         }
     }
 
-    // thêm nhân viên
+    // thêm nhân viên mới gọi từ employeeManagement.addEmployee
     public static void addEmployeeSQL(employee e) {
-        String sqlCommand = "insert into " + tableEmployee + " value( ?, ?, ?, ?, ?, ?, ?)";
+        String sqlCommand = "insert into " + tableEmployee + " value( ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement pst = null;
         try {
-            pst.setInt(1, e.eID);
+            pst = connection.prepareStatement(sqlCommand);
+            pst.setInt(1, e.employeeId);
             pst.setString(2, e.lastName);
             pst.setString(3, e.firstName);
             pst.setDate(4, java.sql.Date.valueOf(e.birthday));
             pst.setString(5, e.jobTitle);
             pst.setString(6, e.phoneNumber);
             pst.setDate(7, java.sql.Date.valueOf(e.joinDate));
+            pst.setString(8, "1234567");
             if (pst.executeUpdate() > 0) {
-                employeeManagement.addEmployee(e);
-                System.out.println("Thêm nhân viên thành công: " + e.eID);
+                employeeManagement.addEmployeeToList(e);
+                System.out.println("Thêm nhân viên thành công: " + e.employeeId);
             } else {
                 System.out.println("Chưa thể thêm nhân viên!");
             }
@@ -95,16 +158,16 @@ public class SQL {
         }
     }
 
-    //xóa nhân viên
-    public boolean deleteEmployees(int maNV) {
+    //xóa nhân viên cũ
+    public static boolean deleteEmployee(int employeeId) {
         String sqlCommand = "delete from " + tableEmployee + " where eID = ?";
         PreparedStatement pst = null;
         try {
             pst = connection.prepareStatement(sqlCommand);
-            pst.setInt(1, maNV);
+            pst.setInt(1, employeeId);
             if (pst.executeUpdate() > 0) {
-                System.out.println("Đã xóa");
-                employeeManagement.removeEmployee(maNV);
+                System.out.println("Đã xóa nhân viên" + employeeId);
+                employeeManagement.removeEmployee(employeeId);
             } else {
                 System.out.println("Không có nhân viên cần xóa!");
             }
@@ -115,7 +178,30 @@ public class SQL {
         return false;
     }
 
-    // In món ăn
+    public static boolean fixInfoEmployee(int id, String lastName, String firstName, LocalDate birth, String jobTitle, String phone) {
+        String sqlCommand = "UPDATE " + tableEmployee + " SET lastName = ?, firstName = ?, birthday = ?,jobTitle = ?, numberPhone = ? WHERE eID = ?";
+        PreparedStatement pst = null;
+        try {
+            pst = connection.prepareStatement(sqlCommand);
+            pst.setString(1, lastName);
+            pst.setDate(2, java.sql.Date.valueOf(birth));
+            pst.setString(3, jobTitle);
+            pst.setString(4, phone);
+            pst.setInt(5, id);
+            if (pst.executeUpdate() > 0) {
+                System.out.println("Đã sửa nhân viên" + id);
+                return true;
+            } else {
+                System.out.println("Không có nhân viên cần sửa!");
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // Nhận tất cả món ăn vào danh sách
     public ResultSet allFoods() {
         ResultSet rs = null;
         String sqlCommand = "select * from " + tableFood;
@@ -132,11 +218,11 @@ public class SQL {
 
     public void getAllFoodsSQL(ResultSet rs) throws SQLException {
         while (rs.next()) {
-           foodManagement.addFood(new food(rs.getInt(1), rs.getString(2), rs.getInt(3)));
+            foodManagement.addFood(new food(rs.getInt(1), rs.getString(2), rs.getInt(3)));
         }
     }
 
-    //xóa món ăn
+    //xóa món ăn cũ
     public void deleteFood(int maMon) {
         String sqlCommand = "delete from " + tableFood + " where fID = ?";
         PreparedStatement pst = null;
@@ -154,14 +240,16 @@ public class SQL {
         }
     }
 
+    // Kiểm tra Mật khẩu và tài khoản
     public static boolean checkID(int id, String pc) throws SQLException {
         ResultSet rs = checkID2(id, pc);
-        //if(rs == null) return false;
-            while (rs.next()) {
-                if(Objects.equals(rs.getString(8), pc)) return true;
-            }
+        if (rs == null) return false;
+        while (rs.next()) {
+            if (Objects.equals(rs.getString(8), pc)) return true;
+        }
         return false;
     }
+
     public static ResultSet checkID2(int id, String pc) {
         ResultSet rs = null;
         String sqlCommand = "select * from " + tableEmployee + " where eID = " + id;
@@ -176,75 +264,31 @@ public class SQL {
         return rs;
     }
 
-    public static void addBilldetails(food x, int bID) {
+
+    public static boolean changePassSQL(int userID, String newPass) {
         ResultSet rs = null;
-        String sqlCommand = "INSERT INTO billdetails (fID, fPrice, bID) " +
-                "VALUES (?, ?, ?)";
+        String sqlCommand = "UPDATE " + tableEmployee + " SET passCode = ?" + " WHERE eID = ? ";
         PreparedStatement pst = null;
         try {
             pst = connection.prepareStatement(sqlCommand);
-            pst.setInt(1, x.fID);
-            pst.setInt(2, x.fPrice);
-            //pst.setString(3, "none");
-            pst.setInt(3, bID);
+            pst.setString(1, newPass);
+            pst.setInt(2, userID);
             if (pst.executeUpdate() > 0) {
-                System.out.println("update success :" + pst.executeUpdate());
+                return true;
             } else {
-                System.out.println("update billdetails error");
+                System.out.println("update pass error SQL");
+                return false;
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
-    public static void addBill(bill nBi) {
+    //Bảng
+    public ResultSet allTables() {
         ResultSet rs = null;
-        String sqlCommand = "INSERT INTO bill (bID, totalMoney, discount, timeIn, eID) " +
-                "VALUES (?, ?, ?, ?, ?)";
-        PreparedStatement pst = null;
-        try {
-            pst = connection.prepareStatement(sqlCommand);
-            pst.setInt(1, nBi.bID);
-            pst.setInt(2, nBi.totalMoney);
-            pst.setInt(3, 0);
-            pst.setTimestamp(4, java.sql.Timestamp.valueOf(nBi.timeIn));
-            pst.setInt(5, nBi.eID);
-            if (pst.executeUpdate() > 0) {
-                System.out.println("update success :" + pst.executeUpdate());
-            } else {
-                System.out.println("update billdetails error");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void payBill(int bID, LocalDateTime payTime) {
-        ResultSet rs = null;
-        String sqlCommand = "UPDATE " + tableBill + " SET timePayment = ?" + " WHERE bID = ? ";
-        PreparedStatement pst = null;
-        try {
-            pst = connection.prepareStatement(sqlCommand);
-            pst.setInt(2, bID);
-            pst.setTimestamp(1, java.sql.Timestamp.valueOf(payTime) );
-            if (pst.executeUpdate() > 0) {
-                System.out.println("update success :" + pst.executeUpdate());
-            } else {
-                System.out.println("update bill error");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
-
-    //nhận vào tất cả hóa đơn
-    /*
-    public ResultSet getAllBill() {
-        ResultSet rs = null;
-        String sqlCommand = "select * from " + table6;
+        String sqlCommand = "select * from " + tableDtable;
         Statement st;
         try {
             st = connection.createStatement();
@@ -256,27 +300,216 @@ public class SQL {
         return rs;
     }
 
-    // thêm từ vào Dictionary.Words
-    public void getBill(ResultSet rs) throws SQLException {
+    public void getAllTablesSQL(ResultSet rs) throws SQLException {
         while (rs.next()) {
-            quanliHoadon.hoaDons.add(new hoaDon(rs.getString(6), , , , ));
+            List<food> f = new ArrayList<>();
+            if(rs.getInt(3) != 0) {
+                ResultSet rs1 = getFoodByBillId(rs.getInt(3));
+                while (rs1.next()) {
+                    f.add(foodManagement.allFood.get(foodManagement.getFoodIdxById(rs1.getInt(1))));
+                }
+            }
+            tableManagement.addTableToList(new table(rs.getInt(1), rs.getInt(3), f));
         }
-    }*/
-
-
-
-
-    public static void main(String[] args) throws SQLException {
-        SQL myconnect = new SQL();
-        billManagement bl = new billManagement();
-        bl.newBill();
-        myconnect.payBill(90, LocalDateTime.now());
-        //myconnect.printAllEmployees(myconnect.allEmployees());
-        //myconnect.addEmployee("Trần Thủy", "Nhân viên", 4635);
-        //myconnect.printAllFoods(myconnect.allFoods());
-        //myconnect.deleteEmployees(4);
-        //myconnect.printAllEmployees(myconnect.allEmployees());
     }
 
+
+    //thêm hóa đơn mới vào bảng khi tạo hóa đơn mới ở billManagement.createNewBill()
+    public static void addBilldetails(food x, int bID) {
+        ResultSet rs = null;
+        String sqlCommand = "INSERT INTO billdetails (fID, fPrice, bID) " +
+                "VALUES (?, ?, ?)";
+        PreparedStatement pst = null;
+        try {
+            pst = connection.prepareStatement(sqlCommand);
+            pst.setInt(1, x.foodId);
+            pst.setInt(2, x.price);
+            //pst.setString(3, "none");
+            pst.setInt(3, bID);
+            if (pst.executeUpdate() > 0) {
+                System.out.println("add success :" + x.getFoodId());
+            } else {
+                System.out.println("update billdetails error");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addNewBill(bill nBi) {
+        ResultSet rs = null;
+        String sqlCommand = "INSERT INTO bill (bID, totalMoney, discount, timeIn, eID) " +
+                "VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement pst = null;
+        try {
+            pst = connection.prepareStatement(sqlCommand);
+            pst.setInt(1, nBi.billId);
+            pst.setInt(2, nBi.totalMoney);
+            pst.setInt(3, 0);
+            pst.setTimestamp(4, java.sql.Timestamp.valueOf(nBi.timeIn));
+            pst.setInt(5, nBi.employeeID);
+            if (pst.executeUpdate() > 0) {
+                System.out.println("update bill success :" + nBi.billId);
+            } else {
+                System.out.println("update billdetails error");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Cập nhật tại hóa đơn khi gọi thêm món
+
+    public static void updateBill(int billId, int sum) {
+        ResultSet rs = null;
+        String sqlCommand = "UPDATE " + tableBill + " SET totalMoney = ?" + " WHERE bID = ? ";
+        PreparedStatement pst = null;
+        try {
+            pst = connection.prepareStatement(sqlCommand);
+            pst.setInt(2, billId);
+            pst.setInt(1, sum);
+            if (pst.executeUpdate() > 0) {
+                System.out.println("Đã thêm món vào: " + billId);
+            } else {
+                System.out.println("Chưa thể thêm món");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    //Thanh toán hóa đơn cũ gọi từ billManagement.payBill
+    public static void payBillSQL(int billId) {
+        ResultSet rs = null;
+        String sqlCommand = "UPDATE " + tableBill + " SET timePayment = ?" + " WHERE bID = ? ";
+        PreparedStatement pst = null;
+        try {
+            pst = connection.prepareStatement(sqlCommand);
+            pst.setInt(2, billId);
+            pst.setTimestamp(1, java.sql.Timestamp.valueOf(LocalDateTime.now()));
+            if (pst.executeUpdate() > 0) {
+                System.out.println("pay success :" + billId);
+            } else {
+                System.out.println("update bill error");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void payBillTableSQL(int tableId, int billID) {
+        ResultSet rs = null;
+        String sqlCommand = "UPDATE " + tableDtable + " SET note = ? WHERE tId = ? ";
+        PreparedStatement pst = null;
+        try {
+            pst = connection.prepareStatement(sqlCommand);
+            pst.setInt(1, billID);
+            pst.setInt(2, tableId);
+            if (pst.executeUpdate() > 0) {
+                System.out.println("pay table success :" + tableId);
+            } else {
+                System.out.println("pay table error");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    // lấy các món ăn từ SQl thông qua mã hóa đơn
+    public static ResultSet getFoodByBillId(int billId) {
+        ResultSet rs = null;
+        String sqlCommand = "select * from " + tableBilldetails + " where bID = " + billId;
+        Statement st;
+        try {
+            st = connection.createStatement();
+            rs = st.executeQuery(sqlCommand);
+        } catch (SQLException e) {
+            System.out.println("lỗi lấy thông tin món ăn của hóa đơn");
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+    // in thông tin hóa đơn qua mã hóa đơn
+    public static ResultSet getInfoBillSQL(int billId) {
+        ResultSet rs = null;
+        String sqlCommand = "select * from " + tableBill + " where bID = " + billId;
+        Statement st;
+        try {
+            st = connection.createStatement();
+            rs = st.executeQuery(sqlCommand);
+        } catch (SQLException e) {
+            System.out.println("lỗi lấy thông tin hóa đơn");
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+    public static bill getInfoBill(int billId) throws SQLException {
+        ResultSet rs = getInfoBillSQL(billId);
+        ResultSet rs1 = getFoodByBillId(billId);
+        bill nb = new bill();
+        nb.setBillId(billId);
+        if (rs == null) return null;
+        while (rs.next()) {
+            nb.setTotalMoney(rs.getInt(2));
+            nb.setTimeIn(rs.getTimestamp(4).toLocalDateTime());
+            nb.setPaymentTime(rs.getTimestamp(5).toLocalDateTime());
+            nb.setEmployeeID(rs.getInt(6));
+            nb.tableId = rs.getInt(7);
+        }
+        while (rs1.next()) {
+            nb.getFoodToList(rs1.getInt(1));
+        }
+        return nb;
+    }
+
+    //in thông tin hóa đơn hóa đơn theo ngày được chỉ định
+    public static ResultSet getInfoBillByDateSQL(LocalDate date) {
+        ResultSet rs = null;
+        //Timestamp first = Timestamp.valueOf(date.atStartOfDay());
+        //Timestamp second = Timestamp.valueOf((date.plus(Period.ofDays(1))).atStartOfDay());
+        String sqlCommand = "select bID from " + tableBill + " WHERE timeIn = " + date ;
+        Statement st;
+        try {
+            st = connection.createStatement();
+            rs = st.executeQuery(sqlCommand);
+        } catch (SQLException e) {
+            System.out.println("lỗi lấy thông tin hóa đơn");
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+    public static List<bill> getInfoBillByDate(LocalDate date) throws SQLException {
+        ResultSet rs = getInfoBillByDateSQL(date);
+        List<bill> bs = new ArrayList<>();
+        while(rs.next()){
+            bs.add(getInfoBill(rs.getInt(1)));
+        }
+        return bs;
+    }
+
+
 }
+
+class test {
+    public static void main(String[] args) throws SQLException {
+        SQL myconnect = new SQL();
+        //billManagement.createNewBill();
+        //billManagement.payBill(8);
+        //billManagement.printInfoBillByDate(LocalDate.of(2021, 12, 5));
+//        employeeManagement.addEmployee("Mai Chi", "Kim", LocalDate.of(2001, 12, 5)
+//        , "quản lí", "0946785432");
+
+//        employeeManagement.removeEmployee(4);
+
+
+    }
+}
+
 

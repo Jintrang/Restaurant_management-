@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 
 public class employee {
-    int eID;
+    int employeeId;
     String lastName;
     String firstName;
     LocalDate birthday;
@@ -9,9 +9,10 @@ public class employee {
     String phoneNumber;
     LocalDate joinDate;
 
-    public employee(int eID, String lastName, String firstName, LocalDate birthday
+    public employee(){}
+    public employee(int employeeId, String lastName, String firstName, LocalDate birthday
             , String jobTitle, String phoneNumber, LocalDate joinDate) {
-        this.eID = eID;
+        this.employeeId = employeeId;
         this.lastName = lastName;
         this.firstName = firstName;
         this.birthday = birthday;
@@ -20,12 +21,12 @@ public class employee {
         this.joinDate = joinDate;
     }
 
-    public int geteID() {
-        return eID;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void seteID(int eID) {
-        this.eID = eID;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getLastName() {

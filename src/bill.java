@@ -1,15 +1,17 @@
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class bill {
-    int bID;
-    List<food> selectedFoods;
-    List<String> foodNotes;
-    int totalMoney;
-    LocalDateTime timeIn;
-    LocalDateTime paymentTime;
-    int eID;
+    static int billId;
+    static List<food> selectedFoods;
+    static List<String> foodNotes;
+    static int totalMoney;
+    static LocalDateTime timeIn;
+    static LocalDateTime paymentTime;
+    static int employeeID;
+    int tableId;
 
     public bill() {
         selectedFoods = new ArrayList<>();
@@ -17,25 +19,26 @@ public class bill {
         totalMoney = 0;
         this.timeIn = LocalDateTime.now();
         this.paymentTime = null;
-        eID = mainAccount.getUserID();
+        employeeID = mainAccount.getUserID();
     }
     public bill(int bID, List<food> selectedFoods, List<String> foodNotes
-            , int totalMoney, LocalDateTime timeIn, LocalDateTime paymentTime, int eID) {
-        this.bID = bID;
+            , int totalMoney, LocalDateTime timeIn, LocalDateTime paymentTime, int employeeID, int tableId) {
+        this.billId = bID;
         this.selectedFoods = selectedFoods;
         this.foodNotes = foodNotes;
         this.totalMoney = totalMoney;
         this.timeIn = timeIn;
         this.paymentTime = paymentTime;
-        this.eID = eID;
+        this.employeeID = employeeID;
+        this.tableId = tableId;
     }
 
-    public int getbID() {
-        return bID;
+    public int getBillId() {
+        return billId;
     }
 
-    public void setbID(int bID) {
-        this.bID = bID;
+    public void setBillId(int billId) {
+        this.billId = billId;
     }
 
     public List<food> getSelectedFoods() {
@@ -54,7 +57,7 @@ public class bill {
         this.foodNotes = foodNotes;
     }
 
-    public int getTotalMoney() {
+    public static int getTotalMoney() {
         return totalMoney;
     }
 
@@ -78,11 +81,24 @@ public class bill {
         this.paymentTime = paymentTime;
     }
 
-    public int geteID() {
-        return eID;
+    public static int getEmployeeID() {
+        return employeeID;
     }
 
-    public void seteID(int eID) {
-        this.eID = eID;
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
+    }
+
+    public static void getFoodToList(int foodId) {
+        selectedFoods.add(foodManagement.allFood.get(foodManagement.getFoodIdxById(foodId)));
+    }
+
+    //In ra thông tin hóa đơn
+    public static void printInfoBill() {
+        System.out.println("Nhân viên quầy: " + getEmployeeID() + " \n Thời gian vào: " + timeIn
+                + " \n Thời gian thanh toán: " + paymentTime + " \n Tổng tiền " + getTotalMoney() );
+        for(food f : selectedFoods) {
+            System.out.println(f.getInfor());
+        }
     }
 }

@@ -1,0 +1,70 @@
+--Thêm nhân viên mới thì mật khẩu mặc định là "1234567"-> tự đăng nhập và tự đổi mật khẩu
+
+
+Code
+Class Tài khoản:
+	       -) user ID
+		+) Đăng nhập
+		+) Đăng xuất
+
+Class Nhân viên:
+-) Mã nhân viên
+-) Họ
+-) Tên
+-) Ngày sinh
+-) Chức vụ
+-) SĐT
+-) Ngày bắt đầu vào làm việc
+
+Class Quản lí nhân viên:
+	-) Danh sách các sinh viên
++) Thêm()
++) Sửa()
++) Xóa()
+
+Class Món ăn:
+	-) Mã món ăn
+	-) Tên món ăn
+	-) Đơn giá
+	Class quản lí món ăn:
+		-) Danh sách các món ăn
++) Thêm()
++) Sửa()
++) Xóa()
+
+Class Hóa đơn:
+	-) 1Mã phục vụ
+	-) 2Danh sách món ăn
+	-) 3Danh sách ghi chú cho món ăn
+	-) 5Tình Trạng
+	-) 6Nhân viên quầy
+	-) 7 Bàn
+	-) Thời gian thanh toán: Ngày
+	-) Thời gian thanh toán: Giờ
+		Class Quản lí món ăn:
+			+) Tạo hóa đơn mới() -> cập nhật vào SQL
++) Thêm món vào hóa đơn cũ() -> cập nhật vào SQL
++) Thanh toán hóa đơn cũ() -> cập nhật tình trạng vào SQL
++) In hóa đơn :
+		= Theo mã hóa đơn
+		= Theo ngày (Đang lỗi)
+Class Bàn:
+	-)Mã bàn
+	-)Danh sách món ăn
+	-)Mã hóa đơn
+		Class Quản lí bàn
+			-) danh sách các bàn
+
+DATA BASE:
+-Nhân viên (Mã nhân viên, Họ và tên đệm, Tên, Ngày sinh, SĐT, Ngày bắt đầu làm việc, mật khẩu)
+-Bàn (Mã bàn, Số ghế, Ghi chú)
+-Món ăn (Mã món, Tên món, Đơn giá)
+-Bàn Món (Mã phục vụ, Mã món, Đơn giá, Ghi chú)
+-Thanh toán (Mã phục vụ, Tổng tiền, Thời gian vào, Thời gian thanh toán, Mã nhân viên, Bàn)
+
+
+
+
+
+
+

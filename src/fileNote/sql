@@ -1,0 +1,72 @@
+CREATE SCHEMA `rtr` ;
+use rtr;
+CREATE TABLE IF NOT EXISTS employee (
+		eID int primary key AUTO_INCREMENT,
+        lastName varchar(50),
+        firstName varchar(50),
+        birthday date,
+        jobTitle varchar(50),
+        numberPhone varchar(12),
+        joinDate date,
+        passCode varChar(10)
+) ENGINE=MEMORY;
+
+ CREATE TABLE IF NOT EXISTS dTable (
+		tId int primary key AUTO_INCREMENT,
+        nChair int,
+        note int
+ ) ENGINE=MEMORY;
+
+  CREATE TABLE IF NOT EXISTS food (
+		fID int primary key AUTO_INCREMENT,
+        fName varchar (50),
+        fPrice int
+ ) ENGINE=MEMORY;
+
+ CREATE TABLE IF NOT EXISTS bill (
+	bID int primary key AUTO_INCREMENT,
+        totalMoney int,
+        discount int,
+        timeIn timestamp,
+        timePayment timestamp,
+        eID int,
+        tId int
+ ) ENGINE = MEMORY;
+
+ CREATE TABLE IF NOT EXISTS billDetails (
+		fID int,
+		fPrice int,
+		fNote varchar(255),
+		bID int,
+        FOREIGN KEY (bID) REFERENCES bill(bID)
+ ) ENGINE=MEMORY;
+
+INSERT INTO `rtr`.`dTable` (`tId`, `nChair`, `note`) VALUES ('1', '6', `0`);
+INSERT INTO `rtr`.`dTable` (`tId`, `nChair`, `note`) VALUES ('2', '6', `0`);
+INSERT INTO `rtr`.`dTable` (`tId`, `nChair`, `note`) VALUES ('3', '7', `0`);
+INSERT INTO `rtr`.`dTable` (`tId`, `nChair`, `note`) VALUES ('4', '7', `0`);
+INSERT INTO `rtr`.`dTable` (`tId`, `nChair`, `note`) VALUES ('5', '8', `0`);
+INSERT INTO `rtr`.`dTable` (`tId`, `nChair`, `note`) VALUES ('6', '8', `0`);
+INSERT INTO `rtr`.`dTable` (`tId`, `nChair`, `note`) VALUES ('7', '6', `0`);
+INSERT INTO `rtr`.`dTable` (`tId`, `nChair`, `note`) VALUES ('8', '7', `0`);
+
+INSERT INTO `rtr`.`food` (`fID`, `fName`, `fPrice`) VALUES ('1', 'Bulgogi (Thịt nướng BBQ)', '450000');
+INSERT INTO `rtr`.`food` (`fID`, `fName`, `fPrice`) VALUES ('2', 'Bibimbap (Cơm trộn Hàn Quốc)', '120000');
+INSERT INTO `rtr`.`food` (`fID`, `fName`, `fPrice`) VALUES ('3', 'Kimchi Hàn Quốc.', '50000');
+INSERT INTO `rtr`.`food` (`fID`, `fName`, `fPrice`) VALUES ('4', 'Japchae (Miến trộn hàn Quốc)', '60000');
+INSERT INTO `rtr`.`food` (`fID`, `fName`, `fPrice`) VALUES ('5', 'Soondubu Jjigae (Súp Đậu phụ kho)', '180000');
+INSERT INTO `rtr`.`food` (`fID`, `fName`, `fPrice`) VALUES ('6', 'Seolleongtang (canh bò)', '220000');
+INSERT INTO `rtr`.`food` (`fID`, `fName`, `fPrice`) VALUES ('7', 'Dakjuk (Cháo gà)', '120000');
+INSERT INTO `rtr`.`food` (`fID`, `fName`, `fPrice`) VALUES ('8', 'Hotteok – bánh pancake', '30000');
+INSERT INTO `rtr`.`food` (`fID`, `fName`, `fPrice`) VALUES ('9', 'Gimbap – Cơm cuốn lá rong biển', '40000');
+INSERT INTO `rtr`.`food` (`fID`, `fName`, `fPrice`) VALUES ('10', 'Hobakjuk (Canh bí đỏ, cháo)', '12000');
+INSERT INTO `rtr`.`food` (`fID`, `fName`, `fPrice`) VALUES ('11', 'Naengmyeon – Mỳ lạnh', '80000');
+INSERT INTO `rtr`.`food` (`fID`, `fName`, `fPrice`) VALUES ('12', 'Samgyetang – Gà tần sâm', '250000');
+INSERT INTO `rtr`.`food` (`fID`, `fName`, `fPrice`) VALUES ('13', 'Trà Omija', '60000');
+INSERT INTO `rtr`.`food` (`fID`, `fName`, `fPrice`) VALUES ('14', 'Bokbunjaju(Rượu mâm xôi)', '250000');
+INSERT INTO `rtr`.`food` (`fID`, `fName`, `fPrice`) VALUES ('15', 'Soju', '100000');
+INSERT INTO `rtr`.`food` (`fID`, `fName`, `fPrice`) VALUES ('16', 'Rượu makgeolli', '100000');
+
+INSERT INTO `rtr`.`employee` (`eID`, `lastName`, `firstName`, `birthday`, `jobTitle`, `numberPhone`, `joinDate`, `passCode`) VALUES ('1', 'Ngô Lan', 'Anh', '1982-11-01', 'Quản lí', '093783473', '2019-11-01', '012345');
+INSERT INTO `rtr`.`employee` (`eID`, `lastName`, `firstName`, `birthday`, `jobTitle`, `numberPhone`, `joinDate`, `passCode`) VALUES ('2', 'Trần Thu', 'Hiền', '1999-11-01', 'Nhân viên', '093837482', '2021-11-11', '034565');
+INSERT INTO `rtr`.`employee` (`eID`, `lastName`, `firstName`, `birthday`, `jobTitle`, `numberPhone`, `joinDate`, `passCode`) VALUES ('3', 'Lê Anh', 'Thư', '2000-10-11', 'Nhân viên', '037384383', '2021-11-12', '93743');
