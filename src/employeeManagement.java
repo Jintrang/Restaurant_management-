@@ -48,7 +48,7 @@ public class employeeManagement {
     }
 
     //sửa thông tin nhân viên vào list và SQL
-    public boolean fixInfoEmployee(int id, String lastName, String firstName, LocalDate birth, String jobTiltle, String phone) {
+    public static boolean fixInfoEmployee(int id, String lastName, String firstName, LocalDate birth, String jobTiltle, String phone) {
         int idx = getEmployeeIdxById(id);
         if(idx>=0) {
             if(!SQL.fixInfoEmployee(id, lastName, firstName, birth, jobTiltle, phone)) return false;

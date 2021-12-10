@@ -36,5 +36,10 @@ public class tableManagement {
         tables.get(tableId -1).foods = new ArrayList<>();
     }
 
+    public static void addNewTable() {
+        addTableToList(new table(++newTableId,0, new ArrayList<food>()));
+        SQL.addNewTableSQL(newTableId);
+    }
+
     //tạo hóa đơn mới dựa theo số bàn
 }

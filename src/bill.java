@@ -4,21 +4,21 @@ import java.util.List;
 import java.util.Scanner;
 
 public class bill {
-    static int billId;
-    static List<food> selectedFoods;
-    static List<String> foodNotes;
-    static int totalMoney;
-    static LocalDateTime timeIn;
-    static LocalDateTime paymentTime;
-    static int employeeID;
+    int billId;
+    List<food> selectedFoods;
+    List<String> foodNotes;
+    int totalMoney;
+    LocalDateTime timeIn;
+    LocalDateTime paymentTime;
+    int employeeID;
     int tableId;
 
     public bill() {
         selectedFoods = new ArrayList<>();
         foodNotes = new ArrayList<>();
         totalMoney = 0;
-        this.timeIn = LocalDateTime.now();
-        this.paymentTime = null;
+        timeIn = LocalDateTime.now();
+        paymentTime = null;
         employeeID = mainAccount.getUserID();
     }
     public bill(int bID, List<food> selectedFoods, List<String> foodNotes
@@ -34,7 +34,7 @@ public class bill {
     }
 
     public int getBillId() {
-        return billId;
+        return this.billId;
     }
 
     public void setBillId(int billId) {
@@ -57,8 +57,8 @@ public class bill {
         this.foodNotes = foodNotes;
     }
 
-    public static int getTotalMoney() {
-        return totalMoney;
+    public int getTotalMoney() {
+        return this.totalMoney;
     }
 
     public void setTotalMoney(int totalMoney) {
@@ -81,21 +81,21 @@ public class bill {
         this.paymentTime = paymentTime;
     }
 
-    public static int getEmployeeID() {
-        return employeeID;
+    public int getEmployeeID() {
+        return this.employeeID;
     }
 
     public void setEmployeeID(int employeeID) {
         this.employeeID = employeeID;
     }
 
-    public static void getFoodToList(int foodId) {
-        selectedFoods.add(foodManagement.allFood.get(foodManagement.getFoodIdxById(foodId)));
+    public void getFoodToList(int foodId) {
+        this.selectedFoods.add(foodManagement.allFood.get(foodManagement.getFoodIdxById(foodId)));
     }
 
     //In ra thông tin hóa đơn
-    public static void printInfoBill() {
-        System.out.println("Nhân viên quầy: " + getEmployeeID() + " \n Thời gian vào: " + timeIn
+    public void printInfoBill() {
+        System.out.println("Mã hóa đơn "+ this.billId + "\nNhân viên quầy: " + getEmployeeID() + " \n Thời gian vào: " + timeIn
                 + " \n Thời gian thanh toán: " + paymentTime + " \n Tổng tiền " + getTotalMoney() );
         for(food f : selectedFoods) {
             System.out.println(f.getInfor());
