@@ -238,7 +238,7 @@ public class SQL {
     }
 
     //xóa món ăn cũ
-    public void deleteFood(int maMon) {
+    public static void deleteFood(int maMon) {
         String sqlCommand = "delete from " + tableFood + " where fID = ?";
         PreparedStatement pst = null;
         try {
@@ -246,7 +246,6 @@ public class SQL {
             pst.setInt(1, maMon);
             if (pst.executeUpdate() > 0) {
                 System.out.println("Đã xóa món ăn");
-                foodManagement.removeFoodByID(maMon);
             } else {
                 System.out.println("Không có món ăn cần xóa!");
             }
@@ -255,6 +254,41 @@ public class SQL {
         }
     }
 
+    // sửa món ăn
+    public static void fixFoodSQL(int id, String name, int price) {
+        String sqlCommand = "UPDATE " + tableFood + " SET fName = ?, fPrice = ?  WHERE fID = " + id;
+        PreparedStatement pst = null;
+        try {
+            pst = connection.prepareStatement(sqlCommand);
+            pst.setString(1, name);
+            pst.setInt(2, price);
+            if (pst.executeUpdate() > 0) {
+                System.out.println("Đã sửa món ăn" + id);
+            } else {
+                System.out.println("Không có món ăn cần sửa!");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    // thêm món ăn
+    public static void addNewFoodSQL(food e) {
+        String sqlCommand = "insert into " + tableFood + " value( ?, ?, ?)";
+        PreparedStatement pst = null;
+        try {
+            pst = connection.prepareStatement(sqlCommand);
+            pst.setInt(1, e.foodId);
+            pst.setString(2, e.name);
+            pst.setInt(3, e.price);
+            if (pst.executeUpdate() > 0) {
+                System.out.println("Thêm món ăn thành công: " + e.foodId);
+            } else {
+                System.out.println("Chưa thể thêm món ăn!");
+            }
+        } catch (SQLException x) {
+            x.printStackTrace();
+        }
+    }
     // Kiểm tra Mật khẩu và tài khoản
     public static boolean checkID(int id, String pc) throws SQLException {
         ResultSet rs = checkID2(id, pc);

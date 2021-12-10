@@ -31,6 +31,7 @@ public class foodManagement {
         int idx = getFoodIdx(f);
         if(idx >= 0){
             allFood.remove(f);
+            SQL.deleteFood(f.foodId);
             return true;
         } else return false;
     }
@@ -39,6 +40,7 @@ public class foodManagement {
         int idx = getFoodIdxById(id);
         if(idx >= 0){
             allFood.remove(idx);
+            SQL.deleteFood(id);
             return true;
         } else return false;
     }
@@ -48,8 +50,15 @@ public class foodManagement {
         if(idx>=0) {
             allFood.get(idx).setName(name);
             allFood.get(idx).setPrice(price);
+            SQL.fixFoodSQL(id, name, price);
             return true;
         }
         return false;
+    }
+
+    public void addNewFood(String name, int price) {
+        food nf = new food(++newFoodId,name, price);
+        SQL.addNewFoodSQL(nf);
+        allFood.add(nf);
     }
 }
