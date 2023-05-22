@@ -1,0 +1,334 @@
+#dangNhap_btn, #hoanThanh_btn {
+    -fx-background-color: #11803f;
+}
+
+#dangKy_btn, #quayLai_btn {
+    -fx-background-color: red;
+}
+
+#checkTable_btn, #logout_btn {
+    -fx-background-color: transparent;
+}
+
+#dangKy_btn:hover, #dangNhap_btn:hover, #hoanThanh_btn:hover, #quayLai_btn:hover,
+#thanhToan_btn:hover, #nhanVien_btn:hover, #thucDon_btn:hover, #hoaDon_btn:hover, #check_btn:hover, #logout_btn:hover {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
+}
+
+#maDangNhap {
+    /*-fx-background-color: transparent;*/
+    -fx-border-radius: 10%;
+}
+
+#container {
+    -fx-background-color: #1d243d;
+}
+#thanhToan_btn {
+    -fx-background-color: #ff595e;
+}
+
+/*#thanhToan_btn:hover {*/
+/*    -fx-background-color: #ed6f03;*/
+/*}*/
+
+#nhanVien_btn {
+    -fx-background-color: #00a441;
+}
+
+/*#nhanVien_btn:hover {*/
+/*    -fx-background-color: #dfc590;*/
+/*}*/
+
+#thucDon_btn {
+    -fx-background-color: #ffcc00;
+}
+
+/*#thucDon_btn:hover {*/
+/*    -fx-background-color: #a5cbd9;*/
+/*}*/
+
+#hoaDon_btn {
+    -fx-background-color: #139cd2;
+}
+
+/*#hoaDon_btn:hover {*/
+/*    -fx-background-color: #d2d7ea;*/
+/*}*/
+
+#table_container {
+    /*-fx-background-color: linear-gradient(to right top, #1e2837, #22374b, #21475e, #1b5771, #0a6983);*/
+    -fx-background-color: #bf6147
+}
+
+#ban1_btn, #ban2_btn, #ban3_btn, #ban4_btn, #ban5_btn, #ban6_btn, #ban7_btn, #ban8_btn {
+    -fx-background-color: #FFFBD0;
+}
+
+#listView, #test {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+.list-cell{
+    -fx-font-size: 16;
+    -fx-font-weight: 500;
+    -fx-padding: 5;
+    -fx-background-color: -fx-box-border, -fx-control-inner-background;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-background-color:transparent;
+}
+.list-cell:even, .list-cell:odd{
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-text-fill: white;
+}
+
+#mon1_container {
+    -fx-hgap: 20px;
+    -fx-padding: 40px;
+
+    -fx-background-color: #2969c0;
+    -fx-border-color: white;
+    -fx-border-radius: 50px;
+    -fx-border-width: 5px;
+}
+
+#mon1_btn {
+    -fx-background-color: transparent;
+}
+
+#foodTableView {
+    -fx-background-color: transparent;
+    -fx-background-radius: 30;
+}
+
+#checkBill_btn {
+    -fx-background-color: green;
+}
+#order_container {
+    /*-fx-background-color: linear-gradient(to right bottom, #4c303b, #483b4b, #454654, #475058, #51585a);*/
+    -fx-background-color: #A55D35;
+    /*-fx-background-color: linear-gradient(to right top, #3381b3, #545c86, #4f3c55, #35252c, #141111);*/
+}
+
+#foodTableView:focused{
+    -fx-background-color: transparent;
+}
+
+#foodTableView .column-header-background{
+    -fx-background-color: transparent;
+}
+
+#foodTableView .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+#foodTableView .column-header, #tableView .filler {
+    -fx-background-color: transparent;
+}
+
+#foodTableView .table-cell{
+    -fx-fill-height: 20px;
+}
+
+#foodTableView .table-row-cell{
+    /*-fx-background-color: -fx-table-cell-border-color, #616161;*/
+    -fx-background-color: #EED090;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-cell-size: 50px;
+}
+
+#foodTableView .table-row-cell:odd{
+    -fx-background-color: #DABD95;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+    -fx-text-fill: black;
+}
+
+/*#foodTableView .table-row-cell:selected {*/
+/*    -fx-background-color: #005797;*/
+/*    -fx-background-insets: 0;*/
+/*    -fx-background-radius: 1;*/
+/*}*/
+
+#foodTableView .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+
+.centered-table-column{
+    -fx-alignment: center;
+}
+
+#employeeTableView .table-row-cell {
+    -fx-cell-size: 24px;
+}
+
+#employeeContainer {
+    -fx-background-color: #5A79A5;
+}
+
+#employeeTableView:focused{
+    -fx-background-color: transparent;
+}
+
+#employeeTableView .column-header-background{
+    -fx-background-color: transparent;
+}
+
+#employeeTableView .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+#employeeTableView .column-header, #tableView .filler {
+    -fx-background-color: transparent;
+}
+
+#employeeTableView .table-cell{
+    -fx-fill-height: 20px;
+}
+
+#employeeTableView .table-row-cell{
+    /*-fx-background-color: -fx-table-cell-border-color, #616161;*/
+    -fx-background-color: #9CAAC6;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-cell-size: 50px;
+}
+
+#employeeTableView .table-row-cell:odd{
+    -fx-background-color: #DEE7EF;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+    -fx-text-fill: black;
+}
+
+#addButton, #back_btn, #saveButton, #saveMenu, #addBtn {
+    -fx-background-color: transparent;
+}
+
+#addButton:hover, #saveButton:hover, #back_btn:hover, #quayLai_btn:hover, #add_btn:hover, #tableBack:hover, #checkTable_btn:hover,
+#searchBill_btn:hover, #billBack:hover, #foodBack:hover, #addBtn:hover, #saveMenu:hover, #backStart:hover {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
+}
+
+#addEmployee {
+    -fx-background-color: #caf0f8;
+}
+
+#quayLai_btn, #add_btn {
+    -fx-background-color: transparent;
+}
+
+#menuTableView {
+    -fx-background-color: transparent;
+    -fx-background-radius: 30;
+}
+
+#foodContainer {
+    -fx-background-color: #7ABA7A;
+}
+#menuTableView:focused{
+    -fx-background-color: transparent;
+}
+
+#menuTableView .column-header-background{
+    -fx-background-color: transparent;
+}
+
+#menuTableView .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+#menuTableView .column-header, #tableView .filler {
+    -fx-background-color: transparent;
+}
+
+#menuTableView.table-cell{
+    -fx-fill-height: 20px;
+}
+
+#menuTableView .table-row-cell{
+    /*-fx-background-color: -fx-table-cell-border-color, #616161;*/
+    -fx-background-color: #C0C0C0;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-cell-size: 50px;
+}
+
+#menuTableView .table-row-cell:odd{
+    -fx-background-color: #CCFFBB;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+    -fx-text-fill: black;
+}
+
+#menuTableView .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+
+#billContainer {
+    -fx-background-color: #CC9900;
+}
+
+#billTableView:focused{
+    -fx-background-color: transparent;
+}
+
+#billTableView .column-header-background{
+    -fx-background-color: transparent;
+}
+
+#billTableView .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+#billTableView .column-header, #tableView .filler {
+    -fx-background-color: transparent;
+}
+
+#billTableView .table-cell{
+    -fx-fill-height: 20px;
+}
+
+#billTableView .table-row-cell{
+    /*-fx-background-color: -fx-table-cell-border-color, #616161;*/
+    -fx-background-color: #D1E6E7;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-cell-size: 50px;
+}
+
+#billTableView .table-row-cell:odd{
+    -fx-background-color: #EDBD3E;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+    -fx-text-fill: black;
+}
+#billTableView .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+
+#billBack, #tableBack {
+    -fx-background-color: transparent;
+}
+
+#searchBill_btn, #foodBack, #backStart {
+    -fx-background-color: transparent;
+}

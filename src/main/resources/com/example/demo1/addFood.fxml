@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="addEmployee" prefHeight="337.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="addFood.Controller">
+    <children>
+        <TextField fx:id="name" layoutX="182.0" layoutY="67.0" prefHeight="38.0" prefWidth="184.0" promptText="Name" />
+        <TextField fx:id="price" layoutX="182.0" layoutY="151.0" prefHeight="38.0" prefWidth="184.0" promptText="Price" />
+        <Button fx:id="quayLai_btn" layoutX="366.0" layoutY="266.0" mnemonicParsing="false" onAction="#quayLai_btn">
+            <graphic>
+                <ImageView fitHeight="37.0" fitWidth="59.0" layoutX="1051.0" layoutY="668.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../icon/back.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="add_btn" layoutX="505.0" layoutY="266.0" mnemonicParsing="false" onAction="#add_btn">
+            <graphic>
+                <ImageView fitHeight="37.0" fitWidth="59.0" layoutX="762.0" layoutY="668.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../icon/add.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <ImageView fitHeight="63.0" fitWidth="62.0" layoutX="92.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../icon/food.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="45.0" fitWidth="62.0" layoutX="92.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../icon/price.png" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>

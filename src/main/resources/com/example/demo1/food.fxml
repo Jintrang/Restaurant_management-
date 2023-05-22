@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="foodContainer" prefHeight="683.0" prefWidth="896.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Food.Controller">
+    <children>
+        <TableView fx:id="menuTableView" layoutX="68.0" layoutY="259.0" prefHeight="378.0" prefWidth="668.0">
+            <columns>
+                <TableColumn fx:id="fID_Column" prefWidth="75.0" styleClass="centered-table-column" text="ID" />
+                <TableColumn fx:id="fName_Column" prefWidth="168.0" styleClass="centered-table-column" text="TÊN MÓN" />
+                <TableColumn fx:id="fPrice_Column" prefWidth="87.0" styleClass="centered-table-column" text="GIÁ" />
+                <TableColumn fx:id="fixButton_Column" prefWidth="89.0" styleClass="centered-table-column" text="SỬA" />
+                <TableColumn fx:id="deleteButton_Column" prefWidth="89.0" styleClass="centered-table-column" text="XÓA" />
+            </columns>
+        </TableView>
+        <Button fx:id="saveMenu" layoutX="776.0" layoutY="531.0" mnemonicParsing="false" onAction="#saveMenu" prefHeight="34.0" prefWidth="46.0">
+            <graphic>
+                <ImageView fitHeight="34.0" fitWidth="59.0" layoutX="914.0" layoutY="668.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../icon/save.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <ImageView fitHeight="189.0" fitWidth="308.0" layoutX="77.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fitHeight="189.0" fitWidth="232.0" layoutX="54.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../image/res_01.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="174.0" fitWidth="330.0" layoutX="286.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../image/res_02.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="174.0" fitWidth="275.0" layoutX="595.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../image/res_03.jpg" />
+            </image>
+        </ImageView>
+        <Button fx:id="addBtn" layoutX="776.0" layoutY="313.0" mnemonicParsing="false" onAction="#addBtn" prefHeight="34.0" prefWidth="46.0">
+            <graphic>
+                <ImageView fitHeight="37.0" fitWidth="59.0" layoutX="762.0" layoutY="668.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../icon/add.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="foodBack" layoutX="776.0" layoutY="414.0" mnemonicParsing="false" onAction="#foodBack" prefHeight="36.0" prefWidth="37.0">
+            <graphic>
+                <ImageView fitHeight="37.0" fitWidth="59.0" layoutX="1051.0" layoutY="668.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../icon/back.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+    </children>
+</AnchorPane>

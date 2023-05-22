@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="476.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.Controller">
+   <children>
+      <Label fx:id="dangNhap_title" alignment="CENTER" layoutX="661.0" layoutY="41.0" prefHeight="35.0" prefWidth="102.0" text="ĐĂNG NHẬP" textAlignment="CENTER" textFill="#61c95e">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <Button fx:id="dangNhap_btn" layoutX="641.0" layoutY="317.0" mnemonicParsing="false" onAction="#dangNhap_btn" prefHeight="35.0" prefWidth="142.0" text="ĐĂNG NHẬP" textFill="#f2f0f0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <TextField fx:id="maDangNhap" layoutX="577.0" layoutY="150.0" prefHeight="35.0" prefWidth="304.0" promptText="Nhập mã nhân viên">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <ImageView fitHeight="475.0" fitWidth="508.0" layoutX="-2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../image/logo_04.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="35.0" fitWidth="37.0" layoutX="505.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../icon/taikhoan.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="66.0" fitWidth="64.0" layoutX="491.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../icon/pass.png" />
+         </image>
+      </ImageView>
+      <PasswordField fx:id="matKhau" layoutX="577.0" layoutY="228.0" prefHeight="35.0" prefWidth="304.0" promptText="Mật Khẩu">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </PasswordField>
+   </children>
+</AnchorPane>
+
+
+
+
+
+
+        <!--<Image url="@../../../image/attachment_103367090-e1571110045215.jpg" />-->

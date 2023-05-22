@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="table_container" prefHeight="640.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Table.checkTable">
+    <children>
+        <Button fx:id="ban1_btn" layoutX="392.0" layoutY="291.0" mnemonicParsing="false" onAction="#ban1_btn" prefHeight="50.0" prefWidth="82.0" text="1">
+            <graphic>
+                <ImageView fitHeight="50.0" fitWidth="82.0" layoutX="83.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../icon/table.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="ban2_btn" layoutX="392.0" layoutY="421.0" mnemonicParsing="false" onAction="#ban2_btn" prefHeight="50.0" prefWidth="82.0" text="2">
+            <graphic>
+                <ImageView fitHeight="50.0" fitWidth="82.0" layoutX="83.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../icon/table.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="checkTable_btn" layoutX="771.0" layoutY="565.0" mnemonicParsing="false" onAction="#checkTable_btn" prefHeight="55.0" prefWidth="35.0">
+            <graphic>
+                <ImageView fitHeight="50.0" fitWidth="31.0" layoutX="312.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../icon/check.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="ban3_btn" layoutX="536.0" layoutY="291.0" mnemonicParsing="false" onAction="#ban3_btn" prefHeight="50.0" prefWidth="82.0" text="3">
+            <graphic>
+                <ImageView fitHeight="50.0" fitWidth="82.0" layoutX="83.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../icon/table.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <ListView fx:id="test" layoutX="28.0" layoutY="293.0" prefHeight="200.0" prefWidth="278.0" />
+        <Button fx:id="logout_btn" layoutX="861.0" layoutY="565.0" mnemonicParsing="false" onAction="#logout_btn" prefHeight="55.0" prefWidth="47.0">
+            <graphic>
+                <ImageView fitHeight="43.0" fitWidth="29.0" layoutX="541.0" layoutY="573.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../icon/logout.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="ban4_btn" layoutX="536.0" layoutY="421.0" mnemonicParsing="false" onAction="#ban4_btn" prefHeight="50.0" prefWidth="82.0" text="4">
+            <graphic>
+                <ImageView fitHeight="50.0" fitWidth="82.0" layoutX="83.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../icon/table.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="ban5_btn" layoutX="682.0" layoutY="291.0" mnemonicParsing="false" onAction="#ban5_btn" prefHeight="50.0" prefWidth="82.0" text="5">
+            <graphic>
+                <ImageView fitHeight="50.0" fitWidth="82.0" layoutX="83.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../icon/table.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="ban6_btn" layoutX="682.0" layoutY="421.0" mnemonicParsing="false" onAction="#ban6_btn" prefHeight="50.0" prefWidth="82.0" text="6">
+            <graphic>
+                <ImageView fitHeight="50.0" fitWidth="82.0" layoutX="83.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../icon/table.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="ban7_btn" layoutX="834.0" layoutY="291.0" mnemonicParsing="false" onAction="#ban7_btn" prefHeight="50.0" prefWidth="82.0" text="7">
+            <graphic>
+                <ImageView fitHeight="50.0" fitWidth="82.0" layoutX="83.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../icon/table.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="ban8_btn" layoutX="834.0" layoutY="421.0" mnemonicParsing="false" onAction="#ban8_btn" prefHeight="50.0" prefWidth="82.0" text="8">
+            <graphic>
+                <ImageView fitHeight="50.0" fitWidth="82.0" layoutX="83.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../icon/table.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <ImageView fitHeight="213.0" fitWidth="313.0" layoutX="11.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../image/res1.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="277.0" fitWidth="393.0" layoutX="324.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../image/res2.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="294.0" fitWidth="313.0" layoutX="631.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../image/res3.jpg" />
+            </image>
+        </ImageView>
+        <Button fx:id="tableBack" layoutX="682.0" layoutY="565.0" mnemonicParsing="false" onAction="#tableBack" prefHeight="55.0" prefWidth="47.0">
+            <graphic>
+                <ImageView fitHeight="44.0" fitWidth="69.0" layoutX="1051.0" layoutY="668.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../icon/back.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+    </children>
+</AnchorPane>

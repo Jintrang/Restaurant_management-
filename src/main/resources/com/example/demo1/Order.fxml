@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="order_container" prefHeight="676.0" prefWidth="896.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Order.Controller">
+    <children>
+        <TableView fx:id="foodTableView" layoutX="14.0" layoutY="247.0" prefHeight="364.0" prefWidth="542.0">
+            <columns>
+                <TableColumn fx:id="fID_Column" prefWidth="44.0" styleClass="centered-table-column" text="ID" />
+                <TableColumn fx:id="fName_Column" prefWidth="143.0" styleClass="centered-table-column" text="TÊN MÓN" />
+                <TableColumn fx:id="fPrice_Column" prefWidth="99.0" styleClass="centered-table-column" text="GIÁ" />
+                <TableColumn fx:id="fQuantity_Column" prefWidth="74.0" styleClass="centered-table-column" text="SỐ LƯỢNG" />
+                <TableColumn fx:id="fButton_Column" prefWidth="85.0" styleClass="centered-table-column" text="ORDER" />
+            <TableColumn fx:id="fDelete_Column" prefWidth="96.0" styleClass="centered-table-column" text="DELETE" />
+            </columns>
+        </TableView>
+        <ListView fx:id="listView" layoutX="592.0" layoutY="268.0" prefHeight="250.0" prefWidth="250.0" />
+        <Label fx:id="billPrice" alignment="CENTER" layoutX="615.0" layoutY="574.0" prefHeight="30.0" prefWidth="205.0" text="" textFill="#f1e9e9">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font></Label>
+        <Button fx:id="quayLai_btn" layoutX="53.0" layoutY="635.0" mnemonicParsing="false" onAction="#quayLai_btn" text="Quay Lại" />
+        <Button fx:id="checkBill_btn" layoutX="765.0" layoutY="623.0" mnemonicParsing="false" onAction="#checkBill_btn" text="Check" />
+        <Button fx:id="thanhToan_btn" layoutX="592.0" layoutY="623.0" mnemonicParsing="false" onAction="#thanhToan_btn" text="Thanh Toán" />
+        <Label fx:id="thanhTien" layoutX="669.0" layoutY="537.0" text="Thành Tiền" textFill="#f1e9e9">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font></Label>
+        <ImageView fitHeight="218.0" fitWidth="319.0" layoutX="22.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../image/banner1.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="212.0" fitWidth="343.0" layoutX="341.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../image/banner2.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="212.0" fitWidth="217.0" layoutX="659.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../image/banner3.jpg" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>

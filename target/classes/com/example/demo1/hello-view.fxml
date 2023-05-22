@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="order_container" prefHeight="774.0" prefWidth="1026.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Order.Controller">
+    <children>
+        <TableView fx:id="foodTableView" layoutX="22.0" layoutY="321.0" prefHeight="378.0" prefWidth="668.0">
+            <columns>
+                <TableColumn fx:id="fID_Column" prefWidth="75.0" styleClass="centered-table-column" text="ID" />
+                <TableColumn fx:id="fName_Column" prefWidth="168.0" styleClass="centered-table-column" text="TÊN MÓN" />
+                <TableColumn fx:id="fPrice_Column" prefWidth="87.0" styleClass="centered-table-column" text="GIÁ" />
+                <TableColumn fx:id="fQuantity_Column" prefWidth="89.0" styleClass="centered-table-column" text="SỐ LƯỢNG" />
+                <TableColumn fx:id="fButton_Column" prefWidth="89.0" styleClass="centered-table-column" text="ORDER" />
+            </columns>
+        </TableView>
+        <ListView fx:id="listView" layoutX="729.0" layoutY="349.0" prefHeight="250.0" prefWidth="250.0" />
+        <Label fx:id="billPrice" alignment="CENTER" layoutX="751.0" layoutY="669.0" prefHeight="30.0" prefWidth="205.0" text="" textFill="#f1e9e9">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font></Label>
+        <Button fx:id="quayLai_btn" layoutX="53.0" layoutY="724.0" mnemonicParsing="false" onAction="#quayLai_btn" text="Quay Lại" />
+        <Button fx:id="checkBill_btn" layoutX="916.0" layoutY="724.0" mnemonicParsing="false" onAction="#checkBill_btn" text="Check" />
+        <Button fx:id="thanhToan_btn" layoutX="711.0" layoutY="285.0" mnemonicParsing="false" onAction="#thanhToan_btn" text="Thanh Toán" />
+        <Label fx:id="thanhTien" layoutX="806.0" layoutY="623.0" text="Thành Tiền" textFill="#f1e9e9">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font></Label>
+        <ImageView fitHeight="257.0" fitWidth="418.0" layoutX="22.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../image/banner1.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="257.0" fitWidth="418.0" layoutX="391.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../image/banner2.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="257.0" fitWidth="418.0" layoutX="759.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../image/banner3.jpg" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>
